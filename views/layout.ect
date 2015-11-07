@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<meta charset="UTF-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+<% metaHelper = (meta) -> %>
+  <meta property="<%- meta.property %>" content="<%- meta.contents %>" />
+<% end %>
+<% if @metas?.length : %>
+      <% for meta in @metas : %>
+      <%- metaHelper meta %>
+      <% end %>
+<% end %>
+
+<% linkHelper = (link) -> %>
+  <link href="<%- link.url %>" rel ="<%- link.rel%>" />
+<% end %>
+<% if @links?.length : %>
+      <% for link in @links : %>
+      <%- linkHelper link %>
+      <% end %>
+<% end %>
+<!-- <link href="//static.tumblr.com/trjt0cv/okvnebj55/normalize.css" rel="stylesheet">
+<link href="//static.tumblr.com/trjt0cv/7hFnebnif/owl.carousel.css" rel="stylesheet" type="text/css" />
+<link href="http://static.tumblr.com/trjt0cv/sbEnvbntv/style.css" rel="stylesheet"> -->
+
+<title>"Love Letter To Chopin" Release Tour | RYO SONODA Piano Trio, The Longing</title>
+  </head>
+  <body>
+  <% content %>
+  <% include 'footer' %>
+  </body>
+</html>
