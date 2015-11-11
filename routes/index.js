@@ -2,6 +2,7 @@ var express = require('express');
 var rp = require('request-promise');
 var bodyParser = require('body-parser');
 var co = require('co');
+var memcache = require('../util/memcache.js');
 var router = express.Router();
 
 router.use(bodyParser.json());
@@ -17,7 +18,7 @@ router.get('/', function(req, res, next) {
       },
       json: true
     };
-    
+
     console.log('This process is pid ' + process.pid);
     var response = yield rp(options);
     res.render('index', response);

@@ -11,14 +11,11 @@ var myDao = function() {
     return new Promise(function(resolve, rejecrt) {
       connection.connect(function(err) {
         if (err) {
-          throw err;
+          reject(err);
         }
         console.log('connected as id ' + connection.threadId);
         resolve();
       });
-    }).catch(function(error) {
-      console.error('error connecting: ' + error.stack);
-      reject(error)
     });
   }
 
