@@ -17,7 +17,8 @@ router.get('/', function(req, res, next) {
       },
       json: true
     };
-
+    
+    console.log('This process is pid ' + process.pid);
     var response = yield rp(options);
     res.render('index', response);
 
