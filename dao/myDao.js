@@ -3,7 +3,7 @@ var connection = mysql.createConnection({
   host: 'localhost',
   user: 'totec',
   password: 'totec',
-  database : 'piyo_db'
+  database : 'totec'
 });
 
 var myDao = function() {
