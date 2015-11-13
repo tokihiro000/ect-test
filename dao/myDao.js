@@ -41,6 +41,18 @@ var myDao = function() {
       });
     });
   }
+
+this.findDataByItemId = function(item_id) {
+    return new Promise(function(resolve, reject) {
+      connection.query('SELECT * FROM ?? WHERE item_Id = ?', ['items', item_id],  function(error, results, fields) {
+        if (error) {
+          reject(error);
+        }
+
+        resolve(results);
+      });
+    })
+  }
 }
 
 // var co = require('co');

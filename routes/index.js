@@ -36,11 +36,14 @@ router.get('/user/:id', function(req, res, next) {
     // DBにアクセス
     var response = yield userDao.findByUserId(req.params.id);
     // フレンド情報を配列に格納
-    var friendsListStr = response.userFriends;
+    console.log(response);
+    var friendsListStr = response[0].userFriends;
+    console.log(friendsListStr);
     var friendsListArray = friendsListStr.split(',');
+    console.log(friendsListArray);
     response.userFriends = friendsListArray;
 
-    res.render('user', response);
+    res.render('user', response[0]);
 
   }).catch(function(error) {
     next(error);
@@ -82,16 +85,11 @@ router.get('/post/:id', function(req, res, next) {
   co(function*() {
     console.log('/param/:id/add: [id] = ' + req.params.id);
     var postId = req.params.id;
-    //yield dao.init();
+   
    var user = yield dao.findDataByPostId('post', postId);
-    if (req.body) {
-      console.log('req.body: ' + req.body.test);
-      var obj = req.body;
-      Object.keys(obj).forEach(function(key) {
-        console.log(key + " : " + obj[key]);
-      });
-    }
-    res.send('post: ' + req.body);
+   console.log(user[0]);    
+   var user = yield userDao.findByUserId(user[0].postUserId);
+   res.send('post: ' + user[0]);
   }).catch(function(error) {
     next(error)
   });

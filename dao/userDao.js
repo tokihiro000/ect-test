@@ -9,7 +9,7 @@ var userDao = function() {
 
  this.findByUserId = function(id) {
     return new Promise(function(resolve, reject) {
-      connection.query('SELECT * FROM user WHERE userId = ' + id, function(error, results, fields) {
+      connection.query('SELECT * FROM user WHERE userId = ? ',[id] , function(error, results, fields) {
         if (error) {
           reject(error);
         }
@@ -30,4 +30,4 @@ var userDao = function() {
 //   console.log(error);
 // })
 
-module.exports = new myDao();
+module.exports = new userDao();
