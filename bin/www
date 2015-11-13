@@ -12,7 +12,7 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '8080');
 app.set('port', port);
 
 /**
@@ -32,8 +32,8 @@ var memcacheUtil = require('../util/memcache.js');
  co(function*() {
    console.log(1);
    yield dao.init();
-   var user = yield dao.findAll('user');
-   console.log(user);
+//   var postData = yield dao.findDataByPostId('post', 'Ps000000');
+//   console.log(postData);
    console.log(2);
  }).catch(function(error) {
    console.log(error);

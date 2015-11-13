@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var co = require('co');
 var memcache = require('../util/memcache.js');
 var router = express.Router();
+var dao = require('../dao/myDao');
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -61,23 +62,6 @@ router.get('/item', function(req, res, next) {
     next(error);
   });
 });
-router.get('/post', function(req, res, next) {
-  co(function*() {
-    var options = {
-      uri: 'http://localhost:4000/review',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      json: true
-    };
-
-    var response = yield rp(options);
-    res.render('review', response);
-
-  }).catch(function(error) {
-    next(error);
-  });
-});
 
 router.get('/get', function(req, res, next) {
   try {
@@ -93,19 +77,23 @@ router.get('/get', function(req, res, next) {
   }
 });
 
-router.post('/post/:id', function(req, res, next) {
-  try {
+router.get('/post/:id', function(req, res, next) {
+  co(function*() {
+    console.log('/param/:id/add: [id] = ' + req.params.id);
+    var postId = req.params.id;
+    //yield dao.init();
+   var user = yield dao.findDataByPostId('post', postId);
     if (req.body) {
-      console.log('req.body: '+ req.body.test);
+      console.log('req.body: ' + req.body.test);
       var obj = req.body;
       Object.keys(obj).forEach(function(key) {
         console.log(key + " : " + obj[key]);
       });
     }
     res.send('post: ' + req.body);
-  } catch (error) {
+  }).catch(function(error) {
     next(error)
-  }
+  });
 });
 
 router.put('/put', function(req, res, next) {

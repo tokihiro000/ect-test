@@ -29,6 +29,18 @@ var myDao = function() {
       });
     });
   }
+
+ this.findDataByPostId = function(table, postId) {
+    return new Promise(function(resolve, reject) {
+      connection.query('SELECT * FROM ?? WHERE postId = ?', [table, postId],  function(error, results, fields) {
+        if (error) {
+          reject(error);
+        }
+
+        resolve(results);
+      });
+    });
+  }
 }
 
 // var co = require('co');
