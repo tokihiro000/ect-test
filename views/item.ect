@@ -40,43 +40,29 @@
       <ol class="breadcrumb" style="background-color: rgba(1, 1, 1, .05);">
         <li><a href="#">Home</a></li>
         <li><a href="#">Items</a></li>
-        <% breadcrumbHelper = (oneData) -> %>
-          <li class="active"><%- oneData.itemId %></li>
-        <% end %>
-        <% if @data?.length : %>
-              <% for oneData in @data : %>
-              <%- breadcrumbHelper oneData %>
-              <% end %>
-        <% end %>
+        <li class="active"><%- @item_id %></li>
       </ol>
 
       <!-- container -->
       <div class="container">
 
         <!-- User Info -->
-        <% itemHelper = (oneData) -> %>
         <div class="row p-a">
           <div class="text-center col-xs-6">
             <img src="/img/item/<%- oneData.itemImage %>" class="img-rounded" width="100" height="100" alt="商品<%- oneData.itemId %>のサムネイル画像">
           </div>
           <div class="col-xs-6">
-            <p><%- oneData.itemId %></p>
-            <p class="m-b-0"><%- oneData.itemSupplier %></p>
-            <p class="m-b-0">売上個数: <%- oneData.itemSoldQuantity %></p>
-            <p><%- oneData.itemSalePrice %>円</p>
+            <p><%- @item_id %></p>
+            <p class="m-b-0"><%- @item_supplier %></p>
+            <p class="m-b-0">売上個数: <%- @item_sold_quantity %></p>
+            <p><%- @item_sale_price %>円</p>
             <p>
-              <% for itemTag in oneData.itemTags : %>
+              <% for itemTag in @item_tags : %>
               <span class="label label-pill label-warning"><%- itemTag %></span>
               <% end %>
             </p>
           </div>
         </div>
-        <% end %>
-        <% if @data?.length : %>
-              <% for oneData in @data : %>
-              <%- itemHelper oneData %>
-              <% end %>
-        <% end %>
         <div class="m-b-md">
           <button type="button" class="btn btn-success btn-lg btn-block">この商品を購入する</button>
         </div>
