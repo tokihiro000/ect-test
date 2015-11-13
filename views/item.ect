@@ -83,23 +83,22 @@
       </div>
 
       <!-- Users -->
+      <% recoUserHelper = (user) -> %>
+      <div class="col-xs-3 p-a-0 p-b text-center">
+        <img src="/img/user/<%- user.userImage %>" alt="商品Us000001のサムネイル画像" class="img-circle" width="48" height="48">
+      </div>
+      <% end %>
+      <% if @recoUsers?.length : %>
       <div class="users">
         <h5 class="p-a">この商品をおすすめしているユーザー</h5>
         <div class="row p-l p-r m-r-0">
-          <div class="col-xs-3 p-a-0 p-b text-center">
-            <img src="/img/user/Us000001.png" alt="商品Us000001のサムネイル画像" class="img-circle" width="48" height="48">
-          </div>
-          <div class="col-xs-3 p-a-0 p-b text-center">
-            <img src="/img/user/Us000002.png" alt="商品Us000002のサムネイル画像" class="img-circle" width="48" height="48">
-          </div>
-          <div class="col-xs-3 p-a-0 p-b text-center">
-            <img src="/img/user/Us000003.png" alt="商品Us000003のサムネイル画像" class="img-circle" width="48" height="48">
-          </div>
-          <div class="col-xs-3 p-a-0 p-b text-center">
-            <img src="/img/user/Us000004.png" alt="商品Us000004のサムネイル画像" class="img-circle" width="48" height="48">
-          </div>
+            <% for user, index in @recoUsers : %>
+            <% break if 8 <= index %>
+            <%- recoUserHelper user %>
+            <% end %>
         </div>
       </div>
+      <% end %>
 
       <!-- Recent Posts -->
       <div class="posts">
