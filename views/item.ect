@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
-    <title>レビュー: 商品It000000 レビューワーUs000000 のページ</title>
+    <title>商品: It000000のページ</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
     <link href='stylesheets/all.css' rel='stylesheet'>
     <style>
       .app {
@@ -11,12 +12,6 @@
       }
       .logo {
         font-family: 'Raleway', sans-serif;
-      }
-      .userReview {
-        border-top: 1px solid #ccc;
-      }
-      .reviewInfo {
-        border-bottom: 1px solid #ccc;
       }
     </style>
     <script src="/js/jquery-2.1.4.js"></script>
@@ -44,7 +39,7 @@
       <!-- breadcrumb -->
       <ol class="breadcrumb" style="background-color: rgba(1, 1, 1, .05);">
         <li><a href="#">Home</a></li>
-        <li><a href="#">Reviews</a></li>
+        <li><a href="#">Items</a></li>
         <% breadcrumbHelper = (oneData) -> %>
           <li class="active"><%- oneData.itemId %></li>
         <% end %>
@@ -71,7 +66,7 @@
             <p><%- oneData.itemSalePrice %>円</p>
             <p>
               <% for itemTag in oneData.itemTags : %>
-                <span class="label label-pill label-warning"><%- itemTag %></span>
+              <span class="label label-pill label-warning"><%- itemTag %></span>
               <% end %>
             </p>
           </div>
@@ -82,46 +77,8 @@
               <%- itemHelper oneData %>
               <% end %>
         <% end %>
-      </div>
-
-      <!-- user review -->
-      <div class="userReview p-t">
-        <blockquote class="blockquote">
-          <p>この商品、いい感じ。</p>
-          <footer>by <img src="/img/user/Us000000.png" alt="Us000000のサムネイル画像" class="img-circle" width="24" height="24" style="vertical-align: bottom;"> Us000000</cite></footer>
-        </blockquote>
-        <!-- review info -->
-        <div class="reviewInfo text-muted p-l p-r p-b" style="font-size: 0.8rem;">
-          <p class="m-b-0">投稿日時: 2015年7月12日 19:38</p>
-          <p class="m-b-0">商品の評価点数: 87</p>
-          <p class="m-b-0">商品に対するアクションステータス: 購入済み</p>
-        </div>
-      </div>
-
-      <!-- liked users -->
-      <div class="likedUsers">
-        <h5 class="p-a">いいねしたユーザー <span class="label label-pill label-default">4</span></h5>
-        <div class="list-group">
-          <button type="button" class="list-group-item">
-            <a href="#" style="color: #333;">
-              <img src="/img/user/Us000001.png" alt="Us000001のサムネイル画像" class="img-circle m-r" width="24" height="24">Us000001
-            </a>
-          </button>
-          <button type="button" class="list-group-item">
-            <a href="#" style="color: #333;">
-              <img src="/img/user/Us000002.png" alt="Us000002のサムネイル画像" class="img-circle m-r" width="24" height="24">Us000002
-            </a>
-          </button>
-          <button type="button" class="list-group-item">
-            <a href="#" style="color: #333;">
-              <img src="/img/user/Us000003.png" alt="Us000003のサムネイル画像" class="img-circle m-r" width="24" height="24">Us000003
-            </a>
-          </button>
-          <button type="button" class="list-group-item">
-            <div class="text-right">
-              <a href="#">もっと見る</a>
-            </div>
-          </button>
+        <div class="m-b-md">
+          <button type="button" class="btn btn-success btn-lg btn-block">この商品を購入する</button>
         </div>
       </div>
 
@@ -141,20 +98,11 @@
           <div class="col-xs-3 p-a-0 p-b text-center">
             <img src="/img/user/Us000004.png" alt="商品Us000004のサムネイル画像" class="img-circle" width="48" height="48">
           </div>
-          <div class="col-xs-3 p-a-0 p-b text-center">
-            <img src="/img/user/Us000005.png" alt="商品Us000005のサムネイル画像" class="img-circle" width="48" height="48">
-          </div>
-          <div class="col-xs-3 p-a-0 p-b text-center">
-            <img src="/img/user/Us000006.png" alt="商品Us000006のサムネイル画像" class="img-circle" width="48" height="48">
-          </div>
-          <div class="col-xs-3 p-a-0 p-b text-center">
-            <img src="/img/user/Us000007.png" alt="商品Us000007のサムネイル画像" class="img-circle" width="48" height="48">
-          </div>
         </div>
       </div>
 
-      <!-- Reccomended Items -->
-      <div class="items">
+      <!-- Recent Posts -->
+      <div class="posts">
         <h5 class="p-a">最近投稿されたレビュー</h5>
         <div class="row p-l p-r">
           <div class="col-xs-3 p-a-0 p-b text-center">
