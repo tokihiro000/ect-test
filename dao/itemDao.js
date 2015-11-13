@@ -9,7 +9,7 @@ var itemDao = function() {
 
  this.findByItemId = function(id) {
     return new Promise(function(resolve, reject) {
-      connection.query('SELECT * FROM items WHERE item_id = ' + id, function(error, results, fields) {
+      connection.query('SELECT * FROM items WHERE item_id = ?', [id], function(error, results, fields) {
         if (error) {
           reject(error);
         }
