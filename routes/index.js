@@ -61,7 +61,7 @@ router.get('/item', function(req, res, next) {
     next(error);
   });
 });
-router.get('/review', function(req, res, next) {
+router.get('/post', function(req, res, next) {
   co(function*() {
     var options = {
       uri: 'http://localhost:4000/review',
@@ -93,7 +93,7 @@ router.get('/get', function(req, res, next) {
   }
 });
 
-router.post('/post', function(req, res, next) {
+router.post('/post/:id', function(req, res, next) {
   try {
     if (req.body) {
       console.log('req.body: '+ req.body.test);

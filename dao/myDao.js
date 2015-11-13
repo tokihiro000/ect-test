@@ -1,8 +1,7 @@
 var mysql = require('mysql');
 var connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'totec',
-  password: 'totec',
+  host: '172.30.2.114',
+  user: 'root',
   database : 'totec'
 });
 
@@ -19,12 +18,15 @@ var myDao = function() {
     });
   }
 
-  this.findAll = function(callback) {
-    connection.query('SELECT * FROM `books` WHERE `author` = "David"', function(error, results, fields) {
-      if (error) {
-        callback(error, null, null);
-      }
+ this.findAll = function(table) {
+    return new Promise(function(resolve, reject) {
+      connection.query('SELECT * FROM ??', [table], function(error, results, fields) {
+        if (error) {
+          reject(error);
+        }
 
+        resolve(results);
+      });
     });
   }
 }
@@ -33,7 +35,7 @@ var myDao = function() {
 // var dao = new myDao();
 // co(function*() {
 //   console.log(1);
-//   yield dao.init();
+ //  yield dao.init();
 //   console.log(2);
 // }).catch(function(error) {
 //   console.log(error);

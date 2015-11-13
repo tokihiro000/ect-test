@@ -27,6 +27,17 @@ var server = http.createServer(app);
 var co = require('co');
 var memcacheUtil = require('../util/memcache.js');
 
+ var co = require('co');
+ var dao = require('../dao/myDao');
+ co(function*() {
+   console.log(1);
+   yield dao.init();
+   var user = yield dao.findAll('user');
+   console.log(user);
+   console.log(2);
+ }).catch(function(error) {
+   console.log(error);
+ })
 co(function*() {
   // memcache 接続
   yield memcacheUtil.init();
