@@ -42,7 +42,7 @@ router.get('/user/:id', function(req, res, next) {
     console.log(friendsListStr);
     var friendsListArray = friendsListStr.split(',');
     console.log(friendsListArray);
-    response.userFriends = friendsListArray;
+    response[0].userFriends = friendsListArray;
 
     res.render('user', response[0]);
 
@@ -58,9 +58,9 @@ router.get('/item/:id', function(req, res, next) {
     // フレンド情報を配列に格納
     var friendsListStr = response[0].item_tags;
     var friendsListArray = friendsListStr.split(',');
-    response.item_tags = friendsListArray;
+    response[0].item_tags = friendsListArray;
 
-    res.render('item', response);
+    res.render('item', response[0]);
 
   }).catch(function(error) {
     next(error);
@@ -85,13 +85,13 @@ router.get('/post/:id', function(req, res, next) {
   co(function*() {
     console.log('/param/:id/add: [id] = ' + req.params.id);
     var postId = req.params.id;
-   
+
    var post = yield dao.findDataByPostId('post', postId);
-   console.log(post[0]);    
+   console.log(post[0]);
    var user = yield userDao.findByUserId(post[0].postUserId);
-   
+
    var item = yield dao.findDataByItemId(post[0].postItemId);
-   
+
    var postLikeUser = post[0].postLikeUsers;
    console.log(postLikeUser);
    res.send('post: ' + item[0] + user[0]);
