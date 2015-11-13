@@ -25,6 +25,23 @@ router.get('/', function(req, res, next) {
     next(error);
   });
 });
+router.get('/review', function(req, res, next) {
+  co(function*() {
+    var options = {
+      uri: 'http://localhost:4000/review',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      json: true
+    };
+
+    var response = yield rp(options);
+    res.render('review', response);
+
+  }).catch(function(error) {
+    next(error);
+  });
+});
 
 router.get('/get', function(req, res, next) {
   try {
