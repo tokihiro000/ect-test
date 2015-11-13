@@ -70,14 +70,19 @@
             <p class="m-b-0"><%- oneData.itemSupplier %></p>
             <p class="m-b-0">売上個数: <%- oneData.itemSoldQuantity %></p>
             <p><%- oneData.itemSalePrice %>円</p>
+            <p>
+              <% for itemTag in oneData.itemTags : %>
+                <span class="label label-pill label-warning"><%- itemTag %></span>
+              <% end %>
+            </p>
           </div>
+        </div>
         <% end %>
         <% if @data?.length : %>
               <% for oneData in @data : %>
               <%- itemHelper oneData %>
               <% end %>
         <% end %>
-        </div>
       </div>
 
       <!-- user review -->
