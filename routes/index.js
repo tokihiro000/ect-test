@@ -86,10 +86,15 @@ router.get('/post/:id', function(req, res, next) {
     console.log('/param/:id/add: [id] = ' + req.params.id);
     var postId = req.params.id;
    
-   var user = yield dao.findDataByPostId('post', postId);
-   console.log(user[0]);    
-   var user = yield userDao.findByUserId(user[0].postUserId);
-   res.send('post: ' + user[0]);
+   var post = yield dao.findDataByPostId('post', postId);
+   console.log(post[0]);    
+   var user = yield userDao.findByUserId(post[0].postUserId);
+   
+   var item = yield dao.findDataByItemId(post[0].postItemId);
+   
+   var postLikeUser = post[0].postLikeUsers;
+   console.log(postLikeUser);
+   res.send('post: ' + item[0] + user[0]);
   }).catch(function(error) {
     next(error)
   });
