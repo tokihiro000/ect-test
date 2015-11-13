@@ -7,6 +7,7 @@ var router = express.Router();
 var dao = require('../dao/myDao');
 
 var userDao = require('../dao/userDao.js');
+var itemDao = require('../dao/itemDao.js');
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -49,17 +50,16 @@ router.get('/user/:id', function(req, res, next) {
     next(error);
   });
 });
-router.get('/item', function(req, res, next) {
+router.get('/item/:id', function(req, res, next) {
   co(function*() {
-    var options = {
-      uri: 'http://localhost:4000/item',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      json: true
-    };
 
-    var response = yield rp(options);
+    // DBにアクセス
+    var response = yield itemDao.findByItemId(req.params.id);
+    // フレンド情報を配列に格納
+    var friendsListStr = response[0].item_tags;
+    var friendsListArray = friendsListStr.split(',');
+    response.item_tags = friendsListArray;
+
     res.render('item', response);
 
   }).catch(function(error) {
