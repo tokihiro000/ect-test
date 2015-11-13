@@ -25,6 +25,23 @@ router.get('/', function(req, res, next) {
     next(error);
   });
 });
+router.get('/user', function(req, res, next) {
+  co(function*() {
+    var options = {
+      uri: 'http://localhost:4000/user',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      json: true
+    };
+
+    var response = yield rp(options);
+    res.render('user', response);
+
+  }).catch(function(error) {
+    next(error);
+  });
+});
 router.get('/item', function(req, res, next) {
   co(function*() {
     var options = {
