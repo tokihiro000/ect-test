@@ -6,6 +6,8 @@ var memcache = require('../util/memcache.js');
 var router = express.Router();
 var dao = require('../dao/myDao');
 
+var userDao = require('../dao/userDao.js');
+
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
@@ -28,17 +30,9 @@ router.get('/', function(req, res, next) {
     next(error);
   });
 });
-router.get('/user', function(req, res, next) {
+router.get('/user/:id', function(req, res, next) {
   co(function*() {
-    var options = {
-      uri: 'http://localhost:4000/user',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      json: true
-    };
-
-    var response = yield rp(options);
+    var response = yield userDao.findByUserId(req.params.id);
     res.render('user', response);
 
   }).catch(function(error) {

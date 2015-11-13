@@ -100,28 +100,27 @@
 
       <!-- liked users -->
       <div class="likedUsers">
-        <h5 class="p-a">いいねしたユーザー <span class="label label-pill label-default">4</span></h5>
+        <h5 class="p-a">いいねしたユーザー <span class="label label-pill label-default"><%- @likedUsers?.length %></span></h5>
         <div class="list-group">
+          <% likedUsersHelper = (user) -> %>
           <button type="button" class="list-group-item">
             <a href="#" style="color: #333;">
-              <img src="/img/user/Us000001.png" alt="Us000001のサムネイル画像" class="img-circle m-r" width="24" height="24">Us000001
+              <img src="/img/user/<%- user.userImage %>" alt="Us000001のサムネイル画像" class="img-circle m-r" width="24" height="24"><%- user.userId %>
             </a>
           </button>
-          <button type="button" class="list-group-item">
-            <a href="#" style="color: #333;">
-              <img src="/img/user/Us000002.png" alt="Us000002のサムネイル画像" class="img-circle m-r" width="24" height="24">Us000002
-            </a>
-          </button>
-          <button type="button" class="list-group-item">
-            <a href="#" style="color: #333;">
-              <img src="/img/user/Us000003.png" alt="Us000003のサムネイル画像" class="img-circle m-r" width="24" height="24">Us000003
-            </a>
-          </button>
-          <button type="button" class="list-group-item">
-            <div class="text-right">
-              <a href="#">もっと見る</a>
-            </div>
-          </button>
+          <% end %>
+          <% if @likedUsers?.length : %>
+              <% for user, index in @likedUsers : %>
+              <% if index < 3 : %>
+              <%- likedUsersHelper user %>
+              <% else : %>
+              <button type="button" class="list-group-item">
+                <div class="text-right">
+                  <a href="#">もっと見る</a>
+                </div>
+              </button>
+              <% end %>
+          <% end %>
         </div>
       </div>
 
