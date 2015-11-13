@@ -66,23 +66,21 @@
       <div class="friends">
         <h5 class="p-a">フレンド <span class="label label-pill label-default">4</span></h5>
         <div class="list-group">
-          <% likedUsersHelper = (user) -> %>
-          <button type="button" class="list-group-item">
-            <a href="#" style="color: #333;">
-              <img src="/img/user/<%- user.userImage %>" alt="Us000001のサムネイル画像" class="img-circle m-r" width="24" height="24"><%- user %>
-            </a>
-          </button>
-          <% end %>
           <% if @userFriends?.length : %>
               <% for user, index in @userFriends : %>
               <% if index < 3 : %>
-              <%- likedUsersHelper user %>
+              <button type="button" class="list-group-item">
+                <a href="#" style="color: #333;">
+                  <img src="/img/user/" alt="Us000001のサムネイル画像" class="img-circle m-r" width="24" height="24"><%- user %>
+                </a>
+              </button>
               <% else : %>
               <button type="button" class="list-group-item">
                 <div class="text-right">
                   <a href="#">もっと見る</a>
                 </div>
               </button>
+              <% break %>
               <% end %>
           <% end %>
         </div>

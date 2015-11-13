@@ -35,11 +35,11 @@ router.get('/user/:id', function(req, res, next) {
     // DBにアクセス
     var response = yield userDao.findByUserId(req.params.id);
     // フレンド情報を配列に格納
-    var friendsListStr = response.userFriends;
+    var friendsListStr = response[0].userFriends;
     var friendsListArray = friendsListStr.split(',');
     response.userFriends = friendsListArray;
 
-    res.render('user', response);
+    res.render('user', response[0]);
 
   }).catch(function(error) {
     next(error);
