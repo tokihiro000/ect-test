@@ -32,7 +32,14 @@ router.get('/', function(req, res, next) {
 });
 router.get('/user/:id', function(req, res, next) {
   co(function*() {
+
+    // DBにアクセス
     var response = yield userDao.findByUserId(req.params.id);
+    // フレンド情報を配列に格納
+    var friendsListStr = response.userFriends;
+    var friendsListArray = friendsListStr.split(',');
+    response.userFriends = friendsListArray;
+
     res.render('user', response);
 
   }).catch(function(error) {
